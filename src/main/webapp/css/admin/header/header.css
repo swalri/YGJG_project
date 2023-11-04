@@ -1,0 +1,32 @@
+/* header css */
+
+/* 헤더 배경색 */
+.headerColor {
+	background-color: #f4f4f4;
+	/* background-color: #00256c; */
+}
+
+/* header 태그 */
+#header-bar {
+	width: calc(100% - 20px);
+	height: 70px;
+	padding-left: 20px;
+	text-align: center;
+}
+
+/* 메뉴바를 보여주는 버튼 */
+.sub-menu-bar {
+	background-color: transparent;
+	/*투명*/
+	border: none;
+	font-size: 30px;
+	line-height: 70px;
+	float: left;
+}
+
+/* #home-selector {
+    font-size: 30px;
+    line-height: 70px;
+} */
+
+/* header css end */

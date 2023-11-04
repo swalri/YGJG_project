@@ -1,0 +1,92 @@
+/* menubar css */
+
+/* 메뉴바 배경색 */
+/* #menu-bar-div와 같다  */
+/* footer에서 색추가 지정 */
+.menuColor {
+	background-color: #4e73df;
+	/* background-color: #393E46; */
+	/* 숙제 -> footer */
+}
+
+/*왼쪽메뉴바 div*/
+#menu-bar-div {
+	width: 250px;
+	height: 100%;
+	margin-left: -250px;
+	/*왼쪽으로 보내기*/
+	transition: margin-left 0.3s;
+}
+
+/* 왼쪽메뉴바 div > nav */
+#menu-bar {
+	width: 250px;
+	/* text-align: center; */
+}
+
+/* MainBoard h2태그 */
+.menu-bar-mainlink {
+	color: white;
+}
+
+/* 처음 보이는 메뉴 이름 */
+.menu-cont {
+	font-size: larger;
+	color: white;
+	cursor: pointer;
+}
+
+/* 메뉴에 사용되는 아아콘 색지정 */
+.icon-save-span {
+	color: white;
+}
+
+/* > 아이콘 위치및 움직임 지정 */
+.icon-chevron {
+	float: right;
+	transition: 0.3s;
+}
+
+/* > 90도 회전*/
+.rotate-90 {
+	transform: rotate(90deg);
+}
+
+/* 메뉴 누르면 나오는 div */
+.detail-menu {
+	background-color: white;
+	border-radius: 5px;
+	padding: 10px;
+	margin: 10px 0px;
+	display: none;
+}
+
+/* 메뉴에 h6태그 지정 */
+.collapse-header {
+	color: rgba(57, 62, 70, 0.5);
+	font-size: small;
+}
+
+/* detail-menu안에있는 모든 태그지정 */
+.page-selector {
+	display: block;
+	padding: 5px 10px;
+	margin: 5px 0;
+}
+
+/* 메뉴 안에 링크 */
+.detail-menu-choice {
+	color: black;
+	font-size: medium;
+	font-family: "Segoe UI";
+	font-weight: lighter;
+}
+
+/* 메뉴 안에 링크 : hover */
+.detail-menu-choice:hover {
+	background-color: #eaecf4;
+	border-radius: 5px;
+}
+
+
+/* menubar css end */

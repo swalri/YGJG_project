@@ -1,0 +1,104 @@
+tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.card-header {
+    background-color: #F8F9FC;
+    padding: 16px 20px;
+}
+
+.table-header-name {
+    font-size: 1.7em;
+    font-weight: 700;
+}
+
+.table-header-name a {
+    color: #4e73df;
+}
+
+.table-bordered {
+    border-top: 1px solid #e3e6f0;
+    border-bottom: 1px solid #e3e6f0;
+
+}
+
+.table-bordered thead tr {
+    border-top: 2px solid #e3e6f0;
+    border-bottom: 2px solid #e3e6f0;
+}
+
+.table-bordered th,
+.table-bordered td {
+    border: 1px solid #e3e6f0;
+    padding: 10px;
+    font-size: medium;
+    font-family: "Segoe UI";
+}
+
+.table-bordered th:first-of-type,
+.table-bordered td:first-of-type {
+    border-left: 0px;
+}
+
+.table-bordered th:last-of-type,
+.table-bordered td:last-of-type {
+    border-right: 0px;
+}
+
+.table-bordered th,
+.table-bordered td {
+    font-weight: bolder;
+    color: rgba(57, 62, 70, 0.5);
+}
+
+.table-bordered a {
+    color: rgba(57, 62, 70, 0.5);
+}
+
+/*테이블을 감싸고있는 div를 감싸고있는 divㅋㅋㅋ*/
+.card-show-table {
+    border: 1px solid #e3e6f0;
+    border-radius: 10px;
+    overflow: hidden;
+    /*margin: auto;*/
+}
+
+.reservaion-tablepage {
+    padding-top: 30px;
+}
+
+/*보여주는 개수*/
+.datatable-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.datatable-bottom div {
+    margin: 10px;
+}
+
+.datatable-dropdown {
+    margin: 10px;
+}
+
+/*페이지 위치*/
+.select-no-page li {
+    float: left;
+    padding: 0;
+    border: 0.01px solid #eaecf4;
+}
+
+.select-no-page li:hover {
+    background-color: #eaecf4;
+}
+
+.select-no-page li a {
+    padding: 15px 5px;
+    color: black;
+}
+
+/*페이지 수*/
+.select-no-page {
+    float: right;
+}

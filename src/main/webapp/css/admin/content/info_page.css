@@ -1,0 +1,14 @@
+/*전체지정 css*/
+@import url(allcontent.css);
+
+@import url(table.css);
+
+.main-tablepage {
+	display: flex;
+	padding: 2.5% 5%;
+	/* 숙제 */
+	/* 테이블이 작아질시 목록을 보여주는 가로값 overflow-x:scroll 지정해서 만들기 */
+	overflow: hidden;
+	align-items: flex-start;
+	justify-content: space-around;
+}

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 이 파일의 역할은 데이터 저장빈 클래스의 객체 별칭이름을 관리한다. -->
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<typeAliases> <!-- 이 파일의 역할은 빈 클래스 객체 별칭이름을 관리 -->
+
+		<!-- 회원 -->
+		<typeAlias type="com.test.Dto.MemberDto" alias="mem" />
+		<!-- 회원 내역 -->
+		<typeAlias type="com.test.vo.HistoryVO" alias="history" />
+		<!-- 쿠폰 -->
+		<typeAlias type="com.test.vo.CouponVO" alias="cp" />
+		<!-- 회원 쿠폰 -->
+		<typeAlias type="com.test.vo.MemberCouponVO" alias="mem_cp" />
+		<!-- 숙소 -->
+		<typeAlias type="com.test.vo.LodgingVO" alias="lodg" />
+		<!-- 숙소 방 -->
+		<typeAlias type="com.test.vo.LodgingRoomVO" alias="lodg_r" />
+		<!-- 레저 -->
+		<typeAlias type="com.test.vo.LeisureVO" alias="leisure" />
+		<!-- 예약 -->
+		<typeAlias type="com.test.vo.ReservationLodgingVO"
+			alias="reserv_lod" />
+		<!-- 레저 구매 -->
+		<typeAlias type="com.test.vo.ReservationLeisureVO"
+			alias="reserv_lei" />
+		<!-- 페이지 -->
+		<typeAlias type="com.test.vo.PageVO" alias="page" />
+		<!-- 공지 -->
+		<typeAlias type="com.test.vo.GongjiVO" alias="gongji" />
+		<!-- 결제 -->
+		<typeAlias type="com.test.vo.PayVO" alias="pay_r" />
+		<!-- 포인트 -->
+		<typeAlias type="com.test.vo.PointVO" alias="point" />
+		<!-- 찜목록 -->
+		<typeAlias type="com.test.vo.WishlistVO" alias="wishlist" />
+	</typeAliases>
+</configuration>

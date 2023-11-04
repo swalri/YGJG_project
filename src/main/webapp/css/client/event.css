@@ -1,0 +1,143 @@
+/* 검색시 왼쪽, 가운데, 오른쪽 */
+@import url(common.css);
+@import url(header.css);
+@import url(footer.css);
+
+.gongji-main-page {
+  width: 100%;
+  height: calc(100vh - 161px);
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+  align-items: center;
+}
+
+/* 왼쪽 메뉴바 */
+.menu-bar {
+  width: 200px;
+  min-width: 200px;
+  height:100%;
+  background-color: #bebebe;
+}
+
+.menu-bar ul {
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.menu-bar li {
+  list-style: none;
+  padding: 5px 10px;
+  position: relative;
+}
+
+.menu-cont {
+  font-size: larger;
+  color: white;
+  display: block;
+  position: relative;
+}
+
+/* 공지 오른쪽 > 아이콘 */
+.icon-chevron {
+  position: absolute;
+  top: 5px;
+  right: 0;
+  transition: 0.3s;
+}
+
+/* 90도회전하는 애니메이션 */
+.rotate-90 {
+  transform: rotate(90deg);
+}
+
+.detail-menu {
+  background-color: white;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0px;
+  display: none;
+}
+
+.page-selector {
+  display: block;
+  padding: 5px 10px;
+  margin: 5px 0;
+  color: #090a0a;
+}
+
+.detail-menu-choice:hover {
+  background-color: #eaecf4;
+  border-radius: 5px;
+}
+
+.icon-save-span {
+  margin-right: 10px;
+}
+
+
+/* 가운데 공지사항 */
+.notice-board {
+  min-width: 700px;
+  max-width: 700px;
+  background-color: #e7e7e7;
+  border-radius: 5px;
+  padding: 60px;
+  overflow: hidden;
+}
+
+.notice-board h2 {
+  margin: 0;
+  padding-left: 30px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #333;
+  margin-bottom: 50px;
+  color: #000000;
+}
+
+.notice-item {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #333;
+  color: #fff;
+  cursor: pointer;
+}
+
+.notice-board .date {
+  color: rgb(239, 239, 239);
+  font-size: 14px;
+}
+
+.notice-board .content {
+  font-size: 16px;
+}
+
+
+/* 오른쪽 광고페이지 */
+.vertical-banner {
+  background-color: #f2f2f2;
+  width: 250px;
+  min-width: 200px;
+  height: 570px;
+  margin: 130px;
+  padding: 20px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.vertical-banner img {
+  max-width: 100%;
+  height: auto;
+}
+
+.vertical-banner-content {
+  padding-top: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+p{
+	margin: 0;
+}

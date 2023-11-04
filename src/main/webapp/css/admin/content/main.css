@@ -1,0 +1,60 @@
+/*전체지정 css*/
+@import url(allcontent.css);
+
+/* main지정 */
+.selector-info {
+	margin-right: 2%;
+	margin-bottom: 0;
+	width: 20%;
+	min-width: 275px;
+	min-height: 95px;
+	border-radius: 10px;
+	overflow: hidden;
+	text-align: right;
+	min-height: 95px;
+	cursor: pointer;
+}
+
+.selector-info a {
+	color: black;
+}
+
+.selector-info div {
+	padding: 5%;
+}
+
+.selector-info>div {
+	padding: 0px 5%;
+	border: 2px solid #eaecf4;
+	border-radius: 10px;
+}
+
+.reg-view {
+	border-bottom: 1px solid #eaecf4;
+}
+
+.lodging-register-num {
+	border-left: 3px solid #765827;
+}
+
+.member-register-num {
+	border-left: 3px solid #1cc88a;
+}
+
+.coupon-register-num {
+	border-left: 3px solid #F79BD3;
+}
+
+.gongji-register-num {
+	border-left: 3px solid #279EFF;
+}
+
+.main-tablepage {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	padding: 2.5% 5% 0 5%;
+	/*    max-height: 95px;
+    min-height: 95px;
+    height: 95px;*/
+}

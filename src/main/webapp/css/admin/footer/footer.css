@@ -1,0 +1,64 @@
+/* footer css */
+
+/* 메인 배경색 */
+.mainColor {
+    background-color: #EEEEEE;
+}
+
+/* footer 배경색 */
+.footerColor {
+    background-color: #393E46;
+}
+
+/* footer 글색 전체지정 */
+#footer-bar {
+    color: white;
+}
+
+/* 사용된컬러확인용 border */
+.settingColor {
+    border: 0.1px solid white;
+}
+
+#footer-bar {
+    width: 100%;
+    height: 70px;
+    text-align: center;
+    position: relative;
+}
+
+#color-page {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}
+
+.setColor-div {
+    float: right;
+    text-align: left;
+}
+
+.settingColor {
+    width: 20px;
+    height: 20px;
+    margin: 5px 10px 0 0;
+    border-radius: 50px;
+    float: left;
+}
+
+/* thead 배경색 */
+.tableColor-thead {
+    background-color: #00ADB5;
+}
+
+/* tbody홀 배경색 */
+.tableColor-tbody1 {
+    background-color: #eaecf4;
+}
+
+/* tbody짝 배경색 */
+.tableColor-tbody2 {
+    background-color: #CBF1F5;
+}
+
+/* footer css end */

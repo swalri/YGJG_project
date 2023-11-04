@@ -1,0 +1,132 @@
+@charset "UTF-8";
+
+/* 제목 스타일 */
+h1 {
+    color: #333;
+    margin-bottom: 30px; /* 아래쪽 여백 추가 */
+    margin-left: 1%; /* 왼쪽 여백 추가 */
+    margin-top: -10px; /* 위쪽 여백 추가 */
+}
+
+
+label {
+    margin-bottom: 10px; /* 라벨 아래쪽에 여백 추가 */
+    margin-left: 34.5%; /* 왼쪽 여백 추가 */
+}
+
+/* 입력 필드 스타일 */
+input[type="text"],
+input[type="password"] {
+    display: block;
+    width: 30%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px; /* 입력 필드 아래쪽에 여백 추가 */
+    margin-left: auto; /* 왼쪽 여백을 auto로 설정하여 오른쪽으로 이동 */
+    margin-right: auto; /* 오른쪽 여백을 auto로 설정하여 가운데 정렬 유지 */
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+button[type="submit"] {
+	margin-left: 34.5%; /* 왼쪽 여백 추가 */
+}
+
+.element {
+	margin-top: 40px;
+    background-color: #f0f0f0; /* 배경색을 회색으로 설정 */
+    padding: 60px; /* 내용과의 간격을 위해 패딩 추가 */
+}
+
+.element2 {
+    padding: 30px; /* 내용과의 간격을 위해 패딩 추가 */
+}
+
+/* header부분 */
+/*나머지 전체페이지*/
+header {
+	background-color: #7e7d7d;
+	padding: 3px 10px 3px 40px;
+	text-align: center;
+	display: flex;
+	justify-content: space-between;
+}
+
+/* 로고 이미지 */
+.logo-image {
+	width: 90px;
+	height: 85px;
+}
+
+/* 메뉴 */
+.menu {
+	display: flex;
+	align-items: center;
+}
+
+.menu a {
+	margin: 0px 10px;
+}
+
+.header-menu-box {
+	width: 80px;
+	height: 20px;
+	padding: 0 15px 25px 10px;
+	background-color: #bebebe;
+	border: 1px;
+	border-radius: 10px;
+	display: inline-block;
+	/*margin: 10px;*/
+	color: rgb(254, 252, 252);
+	text-align: center;
+	line-height: 50px;
+	font-weight: bold;
+	font-size: 15px;
+	font-family: Arial, Dotum, "돋움", sans-serif;
+}
+
+/*로그인 회원가입 글씨*/
+.login {
+	font-size: 12px;
+	display: flex;
+}
+
+.login a {
+	color: #090a0a;
+	margin: 0px 5px;
+}
+
+footer {
+	position: fixed;
+    bottom: 0;
+    width: 100%;
+	background-color: #f4f1f1;
+	color: rgb(0, 0, 0);
+	font-size: 11px;
+	text-align: center;
+	width: 100%;
+	height: 50px;
+}
+
+.error-field {
+    border: 3px solid red;
+}
+
+.error-message {
+    color: rgb(255, 0, 0);
+    font-size: 15px;
+    margin-left: 34.5%; /* 입력란 위에 여백을 추가하여 입력란 아래에 표시 */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+}
+
+
+

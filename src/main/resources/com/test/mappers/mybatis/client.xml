@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="lodging">
+
+	<select id="client_lodging_list" resultType="lodg">
+		<!-- select * from lodging <where> <if test="lodging_type == 'hotel' || 
+			lodging_type == 'motel'"> lodging_type = #{lodging_type} </if> <if test="lodging_type 
+			== 'pool' || lodging_type == 'pension'"> lodging_type = 'pool' OR lodging_type 
+			= 'pension' </if> </where> order by lodging_id asc -->
+
+		SELECT L.LODGING_ID,
+		L.LODGING_NAME,
+		L.LODGING_PHONE,
+		L.LODGING_EMAIL,
+		L.LODGING_IMG,
+		L.LODGING_DESCRIPTION,
+		R.MIN_DAY_PRICE,
+		R.MIN_TIME_PRICE
+		FROM LODGING L
+		JOIN (
+		SELECT LODGING_ID,
+		MIN(ROOM_DAY_PRICE) AS
+		MIN_DAY_PRICE,
+		MIN(ROOM_TIME_PRICE) AS MIN_TIME_PRICE
+		FROM LD_ROOM
+		GROUP
+		BY LODGING_ID
+		) R ON L.LODGING_ID = R.LODGING_ID
+		<where>
+			<if test="lodging_type == 'hotel' || 
+			lodging_type == 'motel'"> lodging_type = #{lodging_type} </if>
+			<if
+				test="lodging_type 
+			== 'pool' || lodging_type == 'pension'"> lodging_type = 'pool' OR lodging_type
+				= 'pension'
+			</if>
+		</where>
+	</select>
+
+	<select id="client_leisure_list" resultType="leisure">
+		select * from
+		leisure
+	</select>
+
+	<select id="client_room_list" resultType="lodg_r">
+		SELECT * FROM LD_ROOM
+		<where>
+			lodging_id = #{lodging_id}
+		</where>
+		ORDER BY LODGING_ID asc, ROOM_ID asc
+	</select>
+
+	<select id="client_room_type" resultType="String">
+		SELECT
+		LODGING.LODGING_TYPE FROM LODGING WHERE LODGING_ID = #{lodging_id}
+	</select>
+
+
+
+	<select id="get_member" resultType="mem">
+		select * from member where
+		name = #{name}
+	</select>
+
+	<select id="get_leisure" resultType="leisure">
+		select * from leisure where
+		leisure_id = #{leisure_id}
+	</select>
+
+	<select id="point" resultType="int">
+		SELECT NVL((SELECT mem_point FROM mem_point WHERE mem_id = #{username}), 0)
+		AS result FROM dual
+	</select>
+
+	<insert id="addReservationtest">
+		INSERT INTO reservationtest(reserv_name, reserv_phone, check_in_date,
+		check_out_date, people_num, visit_method)
+		VALUES (#{reservName}, #{reservPhone}, #{checkIn}, #{checkOut},
+		#{peopleNum}, #{visitMethod})
+	</insert>
+
+	<insert id="addLReservationset">
+		INSERT INTO RESERVATIONLEISTEST(NAME, PHONE, PEOPLE_NUM)
+		VALUES (#{llreservName}, #{llreservPhone}, #{llPEOPLE_NUM})
+	</insert>
+
+	<insert id="addtReservationtest">
+		INSERT INTO treservationtest(reserv_name, reserv_phone, people_num,
+		visit_method)
+		VALUES (#{reservName}, #{reservPhone}, #{peopleNum}, #{visitMethod})
+	</insert>
+
+</mapper>

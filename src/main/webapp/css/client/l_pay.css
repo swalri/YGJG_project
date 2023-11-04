@@ -1,0 +1,78 @@
+@import url(common.css);
+@import url(header.css);
+@import url(footer.css);
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#pay-info-wrap {
+    min-height: calc(100vh - 10rem);
+    /* footer 높이를 빼준다. */
+    background: rgb(250, 250, 250);
+    display: flex;
+    justify-content: center;
+}
+
+.reservation-info,
+.reservation-page {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.reservation-info>div {
+    width: 194px;
+    margin-bottom: 60px;
+}
+
+.reservation-info input[type="text"] {
+    width: 180px;
+    font-size: 16px;
+    margin: 5px 0px;
+    padding: 5px;
+}
+
+.reserv-info,
+.user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.check-info div {
+    margin: 5px;
+}
+
+.reservation-visit,
+.reservation-coupon,
+.payment-info {
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+}
+
+.payment-info>div {
+    width: 194px;
+    margin-bottom: 20px;
+}
+
+/* 결제버튼 */
+button {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}

@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.test.dao.AdminDAO">
+
+	<!-- coupon sql -->
+	<!-- ************************************************************************* -->
+	<!-- coupon 개수 -->
+	<select id="getCouponListCount" parameterType="page"
+		resultType="int">
+		select
+		count(*) from coupon
+		<if test="find_name != null">where cp_name like #{find_name}</if>
+	</select>
+	<!-- 쿠폰 목록보기 -->
+	<select id="getCouponList" parameterType="page" resultType="cp">
+		SELECT
+		cp_id,
+		cp_name,
+		cp_detail,
+		cp_price,
+		cp_startdate,
+		cp_enddate,
+		cp_status
+		FROM (
+		SELECT
+		ROWNUM AS rn,
+		c.*
+		FROM coupon c
+		<if test="find_name != null">where cp_name like #{find_name}</if>
+		)
+		WHERE rn &gt;=
+		#{startrow} AND rn
+		&lt;= #{endrow}
+	</select>
+	<!-- 쿠폰 추가 -->
+	<insert id="insertCoupon" parameterType="cp">
+		insert into coupon values
+		(#{cp_id},#{cp_name},#{cp_detail},#{cp_price},
+		<if test="cp_startdate == null">
+			sysdate
+		</if>
+		<if test="cp_startdate != null">
+			#{cp_startdate}
+		</if>
+		,
+		<if test="cp_enddate == null">
+			null
+		</if>
+		<if test="cp_enddate != null">
+			#{cp_enddate}
+		</if>
+		,1)
+	</insert>
+	<!-- 쿠폰 상태 수정 -->
+	<update id="setCouponStatus">
+		UPDATE coupon
+		SET cp_status = CASE
+		WHEN cp_status = 1
+		THEN 0
+		WHEN cp_status = 0 THEN 1
+		ELSE 1
+		END
+		WHERE cp_id =
+		#{cp_id}
+	</update>
+	<!-- 쿠폰 내용 -->
+	<select id="getCouponCont" resultType="cp">
+		select * from coupon where
+		cp_id
+		= #{cp_id}
+	</select>
+	<!-- 쿠폰 수정 -->
+	<update id="setCouponUpdate">
+		update coupon
+		set
+		cp_name = #{cp_name},
+		cp_detail = #{cp_detail},
+		cp_price = #{cp_price},
+		cp_startdate =
+		<if test="cp_startdate == null">
+			sysdate
+		</if>
+		<if test="cp_startdate != null">
+			#{cp_startdate}
+		</if>
+		,
+		cp_enddate =
+		<if test="cp_enddate == null">
+			null
+		</if>
+		<if test="cp_enddate != null">
+			#{cp_enddate}
+		</if>
+		where cp_id =
+		#{cp_id}
+	</update>
+	<!-- 쿠폰 배포가능한 회원 목록 표시 -->
+	<select id="getCouponIssuList" resultType="mem">
+		SELECT
+		m.username,
+		m.name,
+		m.phone,
+		m.email,
+		m.rdate
+		FROM
+		member m
+		WHERE
+		m.username != 'admin'
+		AND m.username NOT IN (
+		SELECT
+		mem_id
+		FROM
+		mem_cp
+		WHERE
+		cp_id = #{cp_id}
+		)
+	</select>
+	<!-- 쿠폰 배포기능 -->
+	<insert id="setCouponIssu">
+		insert into mem_cp values(
+		#{mem_id},
+		#{cp_id},
+		default
+		)
+	</insert>
+	<!-- 쿠폰 삭제 -->
+	<delete id="deleteCoupon">
+		delete from coupon where cp_id = #{cp_id}
+	</delete>
+	<!-- ************************************************************************* -->
+	<!-- member sql -->
+	<!-- ************************************************************************* -->
+	<!-- 등록된 회원 수 -->
+	<select id="getMemberListCount" resultType="int">
+		select
+		count(*)
+		from
+		member
+		where
+		username != 'admin'
+		<if test="find_name != null">and name like #{find_name}</if>
+	</select>
+	<!-- 회원 목록 -->
+	<select id="getMemberList" parameterType="page" resultType="mem">
+		select
+		username,
+		name,
+		phone,
+		email,
+		rdate
+		from(
+		select
+		rownum as rn, m.* from
+		member m
+		where
+		username != 'admin'
+		<if test="find_name != ''">and name like #{find_name}</if>
+		)
+		where
+		rn &gt;=	<!-- > -->
+		#{startrow}
+		AND rn
+		&lt;=		<!-- < -->
+		#{endrow}
+	</select>
+	<!-- 회원 정보 -->
+	<select id="getMemberCont" resultType="mem">
+		select
+		name,
+		email,
+		phone
+		from member
+		where username = #{mem_id}
+	</select>
+	<!-- 회원 삭제 -->
+	<delete id="deleteMember">
+		delete from member where username = #{mem_id}
+	</delete>
+	<!-- 회원이 가지고있는 쿠폰 정보 -->
+	<resultMap id="couponResultMap" type="java.util.HashMap">
+		<result property="cp_name" column="cp_name" />
+		<result property="cp_price" column="cp_price" />
+	</resultMap>
+	<select id="getMemberCouponList" resultMap="couponResultMap">
+		SELECT
+		c.cp_name,
+		c.cp_price
+		FROM
+		coupon c
+		WHERE
+		c.cp_id in (
+		SELECT
+		cp_id
+		FROM
+		mem_cp
+		WHERE
+		mem_id = #{mem_id}
+		and cp_use = 1
+		)
+	</select>
+	<!-- 회원이 사용한 쿠폰,예약 내역 개수 -->
+	<select id="getMemberHistory" resultType="int">
+		select
+		count(${id})
+		from
+		reservation
+		where mem_id = #{mem_id}
+	</select>
+	<!-- ************************************************************************* -->
+	<!-- lodging sql -->
+	<!-- ************************************************************************* -->
+	<!-- 등록된 숙소 수 -->
+	<select id="getLodgingListCount" resultType="int">
+		select
+		count(*) from
+		lodging
+		<if test="find_name != null">where lodging_name like #{find_name}</if>
+	</select>
+	<!-- 숙소 목록 -->
+	<select id="getLodgingList" parameterType="page"
+		resultType="lodg">
+		select
+		LODGING_ID,
+		LODGING_TYPE,
+		LODGING_NAME,
+		LODGING_PHONE,
+		LODGING_EMAIL,
+		LODGING_IMG,
+		LODGING_DESCRIPTION
+		from(
+		select
+		rownum
+		as rn,
+		l.* from
+		lodging l
+		<if test="find_name != null">where lodging_name like #{find_name}</if>
+		)
+		where
+		rn
+		&gt;=
+		#{startrow}
+		AND rn
+		&lt;= #{endrow}
+	</select>
+	<!-- 숙소 삭제 -->
+	<delete id="deleteLodging">
+		delete from lodging where lodging_id = #{lod_id}
+	</delete>
+	<!-- 방 삭제 -->
+	<delete id="deleteRoom">
+		delete from ld_room where lodging_id = #{lod_id} and
+		room_id = #{room_id}
+	</delete>
+
+	<!-- 방 개수 -->
+	<select id="getRoomListCount" parameterType="string"
+		resultType="int">
+		select count(room_id) from ld_room where lodging_id =
+		#{lod_id}
+	</select>
+	<!-- 숙소 정보 -->
+	<select id="getLodgingCont" resultType="lodg">
+		select *
+		from lodging
+		where
+		lodging_id =#{lod_id}
+	</select>
+	<!-- 숙소에 따른 방 목록 -->
+	<select id="getRoomList" resultType="lodg_r">
+		SELECT
+		room_id,
+		room_name,
+		room_img,
+		room_detail,
+		room_count,
+		room_day_price,
+		room_time_price
+		FROM
+		(
+		SELECT
+		ROWNUM AS rn,
+		r.*
+		FROM
+		ld_room r
+		where
+		lodging_id = #{lod_id}
+		)
+		where
+		rn
+		&gt;=
+		#{p.startrow}
+		AND
+		rn
+		&lt;=
+		#{p.endrow}
+	</select>
+	<!-- 레저 개수 -->
+	<select id="getLeisureListCount" resultType="int">
+		select
+		count(*) from
+		leisure
+		<if test="find_name != null">where leisure_name like #{find_name}</if>
+	</select>
+	<!-- 레저 목록 -->
+	<select id="getLeisureList" parameterType="page"
+		resultType="leisure">
+		select
+		Leisure_ID,
+		Leisure_NAME,
+		Leisure_price,
+		Leisure_DESCRIPTION
+		from(
+		select
+		rownum
+		as rn,
+		l.* from
+		leisure l
+		<if test="find_name != null">where leisure_name like #{find_name}</if>
+		)
+		where
+		rn
+		&gt;=
+		#{startrow}
+		AND rn
+		&lt;= #{endrow}
+	</select>
+	<!-- ************************************************************************* -->
+	<!-- gongji sql -->
+	<!-- ************************************************************************* -->
+	<!-- 공지 개수 -->
+	<select id="getGongjiListCount" resultType="int">
+		select
+		count(*)
+		from
+		gongji
+		<if test="find_name != null">where gongji_name like #{find_name}</if>
+	</select>
+	<!-- 공지 목록 -->
+	<select id="getGongjiList" resultType="gongji">
+		select
+		gongji_no,
+		gongji_NAME,
+		gongji_title,
+		gongji_cont,
+		gongji_hit,
+		gongji_date
+		from(
+		select
+		rownum
+		as rn,
+		g.* from
+		gongji g
+		<if test="find_name != null">where gongji_name like #{find_name}</if>
+		)
+		where
+		rn
+		&gt;=
+		#{startrow}
+		AND rn
+		&lt;=
+		#{endrow}
+	</select>
+	<!-- 공지 추가 -->
+	<insert id="insertGongji">
+		insert into gongji values(
+		gongji_seq.nextval,
+		#{gongji_name},
+		#{gongji_title},
+		#{gongji_cont},
+		0,
+		sysdate
+		)
+	</insert>
+	<!-- 공지 내용 -->
+	<select id="getGongjiCont" resultType="gongji">
+		select * from gongji where
+		gongji_no = #{gongji_no}
+	</select>
+	<!-- 공지 업데이트 -->
+	<update id="setGongjiUpdate">
+		update gongji set
+		gongji_name = #{gongji_name},
+		gongji_title = #{gongji_title},
+		gongji_cont = #{gongji_cont}
+		where
+		gongji_no = #{gongji_no}
+	</update>
+	<!-- 공지 삭제 -->
+	<delete id="deleteGongji">
+		delete from gongji where gongji_no = #{gongji_no}
+	</delete>
+	<!-- ************************************************************************* -->
+	<!-- reserv sql -->
+	<!-- ************************************************************************* -->
+	<!-- 회원 예약 내역 -->
+	<!-- 최신순으로 검색 -->
+	<select id="getLodgingReservList" resultType="reserv_lod">
+		SELECT
+		*
+		FROM
+		payment_records_lodging
+		where ordername != 'admin'
+		ORDER BY
+		payment_date
+		DESC
+	</select>
+	<delete id="deleteReserv">
+		delete from payment_records_lodging where record_id = #{reserv_id}
+
+	</delete>
+</mapper>
